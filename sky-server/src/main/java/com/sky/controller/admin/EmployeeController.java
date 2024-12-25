@@ -14,6 +14,7 @@ import com.sky.vo.EmployeeLoginVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -101,6 +102,22 @@ public class EmployeeController {
     @PostMapping("/status/{status}")
     public Result sta(@PathVariable Integer status,Long id){
         employeeService.statOrStop(status,id);
+        return Result.success();
+    }
+
+    @ApiOperation("根据id查员工")
+    @GetMapping("/{id}")
+    public Result<Employee> getById(@PathVariable Long id){
+        Employee employee =  employeeService.getById(id);
+        return Result.success(employee);
+    }
+
+    @ApiOperation("编辑员工信息")
+    @PutMapping()
+    public Result editEmployee(@RequestBody EmployeeDTO employeeDTO){
+        Employee employee = new Employee();
+        BeanUtils.copyProperties(employeeDTO,employee);
+        employeeService.updateEmployee(employee);
         return Result.success();
     }
 }

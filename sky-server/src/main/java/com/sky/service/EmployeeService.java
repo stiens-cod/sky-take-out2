@@ -22,4 +22,8 @@ public interface EmployeeService {
 
 
     void statOrStop(Integer status,Long id);
+
+    Employee getById(Long id);
+
+    void updateEmployee(Employee employee);
 }
