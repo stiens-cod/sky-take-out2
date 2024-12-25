@@ -115,4 +115,17 @@ public class EmployeeServiceImpl implements EmployeeService {
         log.info("添加用户结束");
     }
 
+    /**
+     *
+     * @param status
+     */
+    @Override
+    public void statOrStop(Integer status,Long id) {
+        Employee employee = new Employee();
+        employee.setStatus(status);
+        employee.setId(id);
+        employee.setUpdateUser(BaseContext.getCurrentId());
+        employee.setUpdateTime(LocalDateTime.now());
+        employeeMapper.update(employee);
+    }
 }

@@ -21,4 +21,5 @@ public interface EmployeeService {
     void save(EmployeeDTO employeeDTO);
 
 
+    void statOrStop(Integer status,Long id);
 }
