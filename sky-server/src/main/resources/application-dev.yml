@@ -8,9 +8,9 @@ sky:
     password: abc123
   alioss:
     endpoint: oss-cn-beijing.aliyuncs.com
-    access-key-id: LTAI5tCQrq29crzwNmiQpWM7
-    access-key-secret: pw3ckwLTuey1aolDw0IcEaDalmzs3V
-    bucket-name: sky-take-out
+    access-key-id: LTAI5tAVDVrmZ2z4fTP54m2S
+    access-key-secret: L0SaOhJtIV78PgMb4Zkrc9UxhyybWh
+    bucket-name: shengdanxue
 
 server:
   port: 8080
