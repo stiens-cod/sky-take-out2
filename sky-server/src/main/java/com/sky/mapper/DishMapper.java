@@ -31,4 +31,7 @@ public interface DishMapper {
     Dish getById(Long id);
 
     void deleteByIds(Long[] ids);
+
+    // TODO AutoFill所有的记得加入
+    void update(Dish dish);
 }
