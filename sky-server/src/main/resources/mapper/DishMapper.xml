@@ -7,6 +7,12 @@
         insert into dish (id, name, category_id, price, image, description, status, create_time, update_time, create_user, update_user)
         values (#{id},#{name},#{categoryId},#{price},#{image},#{description},#{status},#{createTime},#{updateTime},#{updateUser},#{updateUser})
     </insert>
+    <delete id="deleteByIds">
+        delete from dish where id in
+                         <foreach collection="ids" item="id" separator="," open="(" close=")">
+                             #{id}
+                         </foreach>
+    </delete>
     <select id="pageQuery" resultType="com.sky.vo.DishVO">
         select d.*, c.name as categoryName
         from dish d left outer join category c on d.category_id = c.id
@@ -22,5 +28,8 @@
             </if>
         </where>
         order by create_time desc
+    </select>
+    <select id="getById" resultType="com.sky.entity.Dish">
+        select * from dish where id = #{id}
     </select>
 </mapper>

@@ -11,4 +11,7 @@ public interface DishService {
     public void saveWithFavor(DishDTO dishDTO);
 
     PageResult pageQuery(DishPageQueryDTO dishPageQueryDTO);
+
+
+    void deleteBatch(Long[] ids);
 }
