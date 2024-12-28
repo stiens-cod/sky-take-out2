@@ -31,14 +31,14 @@
         select d.*, c.name as categoryName
         from dish d left outer join category c on d.category_id = c.id
         <where>
-            <if test="name != null and name != ''">
-                and name like concat('%',#{name},'%')
+            <if test="name != null">
+                and d.name like concat('%',#{name},'%')
             </if>
             <if test="categoryId != null">
                 and category_id = #{categoryId}
             </if>
             <if test="status != null">
-                and status = #{status}
+                and d.status = #{status}
             </if>
         </where>
         order by create_time desc

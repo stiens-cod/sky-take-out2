@@ -35,3 +35,4 @@ sky:
     # 设置前端传递过来的令牌名称
     admin-token-name: token
 
+

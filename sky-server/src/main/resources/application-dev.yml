@@ -9,3 +9,9 @@ sky:
 
 server:
   port: 8080
+
+spring:
+  redis:
+    host: 192.168.239.129
+    port: 6379
+    password: 123321
