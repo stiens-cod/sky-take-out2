@@ -34,4 +34,6 @@ public interface DishMapper {
 
     // TODO AutoFill所有的记得加入
     void update(Dish dish);
+
+    List<Dish> list(Dish dish);
 }
