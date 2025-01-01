@@ -46,27 +46,19 @@
     <select id="getById" resultType="com.sky.entity.Dish">
         select * from dish where id = #{id}
     </select>
-    <select id="list" resultType="com.sky.entity.Dish">
+    <select id="list" resultType="Dish" parameterType="Dish">
         select * from dish
         <where>
+            <if test="name != null">
+                and name like concat('%',#{name},'%')
+            </if>
             <if test="categoryId != null">
                 and category_id = #{categoryId}
             </if>
             <if test="status != null">
                 and status = #{status}
             </if>
-            <if test="name != null">
-                and name like concat('%',#{name},'%')
-            </if>
-            <if test="price != null">
-                and price = #{price}
-            </if>
-            <if test="description != null">
-                and description like concat('%',#{description},'%')
-            </if>
-            <if test="id != null">
-                and id =  #{id}
-            </if>
         </where>
+        order by create_time desc
     </select>
 </mapper>
