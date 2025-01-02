@@ -11,6 +11,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,9 +24,15 @@ public class DishController {
 
     @Autowired
     private DishService dishService;
+
+    @Autowired
+    private RedisTemplate<String,Object> redisTemplate;
     @PostMapping
     @ApiOperation("新增菜品")
     public Result save(@RequestBody DishDTO dishDTO){
+
+        String key = "dish_" + dishDTO.getCategoryId();
+        redisTemplate.delete(key);
         dishService.saveWithFavor(dishDTO);
         return Result.success();
     }
@@ -42,6 +49,7 @@ public class DishController {
     @ApiOperation("批量删除菜品")
     public Result deleteBatch(@RequestParam Long[] ids){
         log.info("删除菜品：{}",ids);
+        cleanCache();
         dishService.deleteBatch(ids);
         return Result.success();
     }
@@ -56,6 +64,7 @@ public class DishController {
     @PutMapping
     @ApiOperation("修改菜品")
     public Result update(@RequestBody DishDTO dishDTO){
+        cleanCache();
         dishService.updateWithFavor(dishDTO);
         return Result.success();
     }
@@ -71,4 +80,12 @@ public class DishController {
         List<Dish> list = dishService.list(categoryId);
         return Result.success(list);
     }
+
+    // TODO 为什么我没写菜品起售停售？ 记得还要加上redis清缓存
+
+    private void cleanCache(){
+        redisTemplate.delete(redisTemplate.keys("dish_*"));
+    }
+
+
 }

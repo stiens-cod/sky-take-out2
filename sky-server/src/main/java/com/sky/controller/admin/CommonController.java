@@ -32,7 +32,9 @@ public class CommonController {
     @PostMapping("/upload")
     public Result<String> upload(MultipartFile file)  {
         log.info("文件上传");
-        try{
+        return Result.success("shengdanxue");
+        // TODO 到时候恢复，目前先不用，因为传图片去阿里云有警告
+        /*try{
             //原始文件名
             String originalFilename = file.getOriginalFilename();
             //截取拓展名
@@ -46,6 +48,6 @@ public class CommonController {
         }catch (IOException e){
             e.printStackTrace();
         }
-        return Result.error(MessageConstant.UPLOAD_FAILED);
+        return Result.error(MessageConstant.UPLOAD_FAILED);*/
     }
 }
