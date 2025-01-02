@@ -6,7 +6,9 @@ sky:
     database: sky_take_out
     username: root
     password: abc123
-
+  wechat:
+    appid: wx42773e61f3a0dcfa
+    secret: 7406a792df34f41916a9299e73dde278
 server:
   port: 8080
 
